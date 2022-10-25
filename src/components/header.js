@@ -3,10 +3,10 @@ import Nav from './nav'
 
 const Header = () => {
   return (
-    <div>
+    <header>
       <h1>Sample Gatsby Site</h1>
       <Nav />
-    </div>
+    </header>
   )
 }
 
