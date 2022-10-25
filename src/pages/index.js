@@ -1,14 +1,13 @@
 import React from 'react';
-import Footer from '../components/footer';
-import Header from '../components/header';
+import Layout from '../components/layout'
 
 const IndexPage = () => {
   return (
     <div>
-      <Header />
+    <Layout>
       <h1>Hello</h1>
       <h2>This is a sample text for sample page</h2>
-      <Footer />
+    </Layout>
     </div>
   )
 }
