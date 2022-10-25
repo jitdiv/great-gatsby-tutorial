@@ -1,17 +1,15 @@
 import React from 'react';
 import { Link } from 'gatsby';
+import { link, navList, activeNavItem } from './header.module.scss'
 
 const Nav = () => {
 
-  const ulStyles = {listStyle: 'none'}
-  const liStyles ={display:'inline', marginLeft: '5px'}
-
   return (
-    <ul style={ulStyles}>
-      <li style={liStyles}><Link to="/">Home</Link></li>
-      <li style={liStyles}><Link to="/about">About</Link></li>
-      <li style={liStyles}><Link to="/blog">Blog</Link></li>
-      <li style={liStyles}><Link to="/contact">Contact</Link></li>
+    <ul className={navList}>
+      <li><Link to="/">Home</Link></li>
+      <li><Link to="/about">About</Link></li>
+      <li><Link to="/blog">Blog</Link></li>
+      <li><Link to="/contact">Contact</Link></li>
     </ul>
   )
 }
