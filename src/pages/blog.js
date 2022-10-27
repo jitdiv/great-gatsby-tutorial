@@ -8,20 +8,20 @@ const BlogPage = () => {
       edges
     }
   } = useStaticQuery(graphql`
-  query {
-    allMarkdownRemark {
-       edges {
-          node {
-            frontmatter {
-              title
-              date
+      query {
+        allMarkdownRemark {
+          edges {
+              node {
+                frontmatter {
+                  title
+                  date
+                }
+              html
+              excerpt
             }
-          html
-          excerpt
+          }
         }
       }
-    }
-  }
   `)
 
   return (
