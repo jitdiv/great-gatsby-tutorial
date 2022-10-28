@@ -2,6 +2,8 @@ import React from 'react';
 import Layout from '../components/layout';
 import { Link, graphql, useStaticQuery } from 'gatsby';
 
+import { posts, posting } from './blog.module.scss';
+
 const BlogPage = () => {
   const {
     allMarkdownRemark: {
@@ -32,7 +34,7 @@ const BlogPage = () => {
     <Layout>
       <h1>Blog</h1>
       <p>Posts will show up here:</p>
-      <ol>
+      <ol className={posts}>
         {
           edges.map((post) => {
             const {
@@ -45,9 +47,11 @@ const BlogPage = () => {
             } = post
 
             return (
-              <li key={String(Math.random() * 1)}>
-                <h2><Link to={`${post.node.fields.slug}`}>{title}</Link></h2>
-                <p>{date}</p>
+              <li className={posting} key={String(Math.random() * 1)}>
+                <Link to={`${post.node.fields.slug}`}>
+                  <h2>{title}</h2>
+                  <p>{date}</p>
+                </Link>
               </li>
             )
           })
