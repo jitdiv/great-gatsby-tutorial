@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from '../components/layout';
-import { graphql, useStaticQuery } from 'gatsby';
+import { Link, graphql, useStaticQuery } from 'gatsby';
 
 const BlogPage = () => {
   const {
@@ -16,6 +16,9 @@ const BlogPage = () => {
                   title
                   date
                 }
+              fields {
+                slug
+              }
               html
               excerpt
             }
@@ -43,7 +46,7 @@ const BlogPage = () => {
 
             return (
               <li key={String(Math.random() * 1)}>
-                <h2>{title}</h2>
+                <h2><Link to={`${post.node.fields.slug}`}>{title}</Link></h2>
                 <p>{date}</p>
               </li>
             )
