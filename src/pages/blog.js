@@ -5,36 +5,73 @@ import { Link, graphql, useStaticQuery } from 'gatsby';
 import { posts, posting } from './blog.module.scss';
 
 const BlogPage = () => {
-  const {
-    allMarkdownRemark: {
-      edges
-    }
-  } = useStaticQuery(graphql`
-      query {
-        allMarkdownRemark {
-          edges {
-              node {
-                frontmatter {
-                  title
-                  date
-                }
-              fields {
-                slug
-              }
-              html
-              excerpt
-            }
-          }
+
+const data = useStaticQuery(graphql`
+  query {
+    allContentfulBlogPost (
+      sort: {
+       fields: publishedDate,
+        order: DESC
+      }
+    ) {
+      edges {
+        node {
+          title
+          slug
+          publishedDate (formatString:"MMMM Do, YYYY")
         }
       }
-  `)
+    }
+  }
+`)
+
+  // const {
+  //   allMarkdownRemark: {
+  //     edges
+  //   }
+  // } = useStaticQuery(graphql`
+  //     query {
+  //       allMarkdownRemark {
+  //         edges {
+  //             node {
+  //               frontmatter {
+  //                 title
+  //                 date
+  //               }
+  //             fields {
+  //               slug
+  //             }
+  //             html
+  //             excerpt
+  //           }
+  //         }
+  //       }
+  //     }
+  // `)
 
   return (
     <div>
     <Layout>
       <h1>Blog</h1>
       <p>Posts will show up here:</p>
+
       <ol className={posts}>
+        {
+          data.allContentfulBlogPost.edges.map((post) => {
+            return (
+              <li className={posting} key={String(Math.random() * 1)}>
+                <Link to={post.node.slug}>
+                  <h2>{post.node.title}</h2>
+                  <p>{post.node.publishedDate}</p>
+                </Link>
+              </li>
+            )
+          })
+        }
+      </ol>
+
+
+      {/* <ol className={posts}>
         {
           edges.map((post) => {
             const {
@@ -56,7 +93,9 @@ const BlogPage = () => {
             )
           })
         }
-      </ol>
+      </ol> */}
+
+
     </Layout>
     </div>
   )
